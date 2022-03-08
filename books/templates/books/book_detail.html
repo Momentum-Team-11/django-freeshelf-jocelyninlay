@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">All Books</h1>
+
+<p><a href="{% url 'add_book' %}">Add New Book</a> </p>
+
+<div class="content">
+
+<div class="box">
+    <h3> {{ book.title }}</h3>
+    <p> by: {{ book.author }}</p>
+    <p> {{ book.desription}}</p>
+    <p> {{ book.url }} </p>
+    <p> {{ book.created_at }}</p>
+    
+    <a class= "content is-small" href="{% url 'edit_book' pk=book.pk %}">Edit book</a><br>
+    <a class="red content is-small" href="{% url 'delete_book' pk=book.pk %}">Delete book</a>
+    </p>
+</div> <!--end of second one,-->
+
+</div> <!-- end of first div -->
+{% endblock %}
