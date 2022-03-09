@@ -13,6 +13,9 @@
     <p> {{ book.desription}}</p>
     <p> {{ book.url }} </p>
     <p> {{ book.created_at }}</p>
+
+    
+
     
     <a class= "content is-small" href="{% url 'edit_book' pk=book.pk %}">Edit book</a><br>
     <a class="red content is-small" href="{% url 'delete_book' pk=book.pk %}">Delete book</a>

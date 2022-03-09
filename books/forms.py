@@ -1,5 +1,5 @@
 from django import forms
-from .models import Book
+from .models import Book, Topic
 
 class BookForm(forms.ModelForm):
     class Meta:
@@ -9,5 +9,7 @@ class BookForm(forms.ModelForm):
             'author',
             'description',
             'url',
+            'topic',
             'created_at',
+            
         ]
