@@ -12,19 +12,19 @@ def home(request):
     return render(request, "books/home.html")
 
 def book_is_favorited(book, user):
-    return user.favorite_books.filter(pk=book)
+    return user.favorite_books.filter(pk=book.pk)
 
 @login_required
 def list_books(request):
     book = Book.objects.all()
-    favorited = book_is_favorited(book, request.user)
-    return render(request, "books/list_books.html",{"book": book, "favorited": favorited})
+    return render(request, "books/list_books.html",{"book": book})
     
 @login_required
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)  
+    favorited = book_is_favorited(book, request.user)
     form = BookForm()
-    return render (request, "books/book_detail.html", {"book": book, "pk":pk, "form": form},)
+    return render (request, "books/book_detail.html", {"book": book, "pk":pk, "form": form, "favorited": favorited,})
 
 @login_required
 def add_book(request):
@@ -63,9 +63,9 @@ def sort_by_category(request, slug):
     return render(request, "books/list_books.html", {"book": book})
 
 @login_required
-def add_favorite(request, book):
-    book = get_object_or_404(Book, pk=book.pk)
+def add_favorite(request, pk):
+    book = get_object_or_404(Book, pk=pk)
     user = request.user
     user.favorite_books.add(book)
     favorited = book_is_favorited(book, request.user)
-    return redirect("list_books", pk = book.pk)
+    return redirect("list_books")

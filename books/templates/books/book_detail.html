@@ -13,7 +13,11 @@
     <p> {{ book.desription}}</p>
     <p> {{ book.url }} </p>
     <p> {{ book.created_at }}</p>
-
+    <div>
+        <a href="{% url 'add_favorite' pk=book.pk %}">
+            <i class="{% if favorited %} fa-solid {% else %} fa-regular {% endif %} fa-heart"></i>
+             </a>
+     </div>
     
 
     

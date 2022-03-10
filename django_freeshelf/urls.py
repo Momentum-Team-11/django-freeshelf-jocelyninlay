@@ -32,3 +32,4 @@ urlpatterns = [
     path("books/<int:pk>/favorite", books_views.add_favorite, name = "add_favorite"),
 
 ]
+    
