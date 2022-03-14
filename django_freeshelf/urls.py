@@ -15,7 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.urls import include, path
+from books import views as books_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", books_views.home, name="home"),
+    path('accounts/', include('registration.backends.simple.urls')),
+    path("books", books_views.list_books, name="list_books"),
+    path("books/add/", books_views.add_book, name="add_book"),
+    path("books/<int:pk>/", books_views.book_detail,  name="book_detail"),
+    path("books/<int:pk>/edit/", books_views.edit_book, name="edit_book"),
+    path("books/<int:pk>/delete/", books_views.delete_book, name="delete_book"),
+    path("books/categories/<slug:slug>", books_views.sort_by_category, name="sort_by_category"),
+    path("books/<int:pk>/favorite", books_views.add_favorite, name = "add_favorite"),
+
 ]
+    
